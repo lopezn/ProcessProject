@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+ValidArticle:
   title: MyString
   text: MyText
 
-two:
-  title: MyString
-  text: MyText
+WithNoComments:
+  title: MyString1
+  text: MyText1
+
+WithOneComment:
+  title: MyString2
+  text: MyText2
+
+WithTwoComments:
+  title: MyString3
+  text: MyText3

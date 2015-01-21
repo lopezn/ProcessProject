@@ -1,11 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  commenter: MyString
-  body: MyText
+ValidComment:
+  commenter: Floo
+  body: Blar
+  article: ValidArticle
+  article_id:
+
+ForArticleWithOneComment:
+  commenter: Foo
+  body: Bar
+  article: WithOneComment
   article_id: 
 
-two:
-  commenter: MyString
-  body: MyText
+ForArticleWithTwoComments1:
+  commenter: Doo
+  body: Lar 
+  article: WithTwoComments
+  article_id: 
+
+ForArticleWithTwoComments2:
+  commenter: Coo
+  body: Jar 
+  article: WithTwoComments
   article_id: 
