@@ -1,7 +1,73 @@
 require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
-	# test "the truth" do
-	#   assert true
-	# end
+	test "index loads all articles" do
+	  get :index
+	  assert_not_nil assigns(:articles)
+	  assert_equal assigns(:articles).count, Article.count
+	end
+
+	test "index succeeds" do
+		get :index
+		assert_response :success
+		assert_template :index
+	end
+
+	test "new constructs new article for the view" do
+		get :new
+		assert_equal nil, assigns(:article).title
+	end
+
+	test "new succeeds" do
+		get :new
+		assert_response :success
+		assert_template :new		
+	end
+
+	test "create saves a valid article" do
+		assert_difference('Article.count') do
+	    post :create, article: {title: 'Hello', body: 'Stuff'}
+	  end
+	end
+
+	test "create does not save a valid article" do
+		assert_difference('Article.count', 0) do
+	    post :create, article: {title: 'Hi', body: 'Things'}
+	  end
+	end
+
+	test "create redirects valid articles to show" do
+		post :create, article: {title: 'Hello', body: 'Reasons'}
+		assert_redirected_to article_path(assigns(:article))
+	end
+
+	test "create redirects invalid articles back to new" do 
+		post :create, article: {title: 'Hi', body: 'Things'}
+		assert_template :new
+	end
+
+	test "show loads the correct article" do
+		@expectedArticle = articles(:ValidArticle)
+		get :show, id: @expectedArticle.id
+		assert_equal @expectedArticle, assigns(:article)
+	end
+
+	test "show succeeds" do
+		get :show, id: articles(:ValidArticle).id
+		assert_response :success
+		assert_template :show
+	end
+
+	test "edit loads the correct article" do
+		@expectedArticle = articles(:ValidArticle)
+		get :edit, id: @expectedArticle.id
+		assert_equal @expectedArticle, assigns(:article)
+	end
+
+	test "edit succeeds" do
+		get :edit, id: articles(:ValidArticle).id
+		assert_response :success
+		assert_template :edit
+	end
+
 end

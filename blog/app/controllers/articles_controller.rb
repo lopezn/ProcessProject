@@ -16,7 +16,6 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
-		#@article.text = "changed"
 	end
 
 	def index
@@ -44,18 +43,18 @@ class ArticlesController < ApplicationController
 		redirect_to articles_path
 	end
 
-	def download
-		send_file Rails.root.join('app', 'assets', 'images', 'Penguins.jpg')
-	end
+	#def download
+	#	send_file Rails.root.join('app', 'assets', 'images', 'Penguins.jpg')
+	#end
 
-	def upload
-		@article = Article.find(params[:id])
-		uploaded_io = params[:article][:stuff]
-		File.open(Rails.root.join('app', 'assets', uploaded_io.original_filename), 'wb') do |file|
-			file.write(uploaded_io.read)
-		end
-		redirect_to articles_path
-	end
+	#def upload
+	#	@article = Article.find(params[:id])
+	#	uploaded_io = params[:article][:stuff]
+	#	File.open(Rails.root.join('app', 'assets', uploaded_io.original_filename), 'wb') do |file|
+	#		file.write(uploaded_io.read)
+	#	end
+	#	redirect_to articles_path
+	#end
 
 	private
 		def article_params
