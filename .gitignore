@@ -99,3 +99,6 @@ $RECYCLE.BIN/
 
 # Ignore the generated code coverage
 /coverage
+
+# Ignore the gemfile lock so it can be generated on target machine
+Gemfile.lock
