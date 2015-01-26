@@ -30,7 +30,7 @@ class ArticlesControllerTest < ActionController::TestCase
 	  end
 	end
 
-	test "create does not save a valid article" do
+	test "create does not save an invalid article" do
 		assert_difference('Article.count', 0) do
 	    post :create, article: {title: 'Hi', body: 'Things'}
 	  end
@@ -68,6 +68,36 @@ class ArticlesControllerTest < ActionController::TestCase
 		get :edit, id: articles(:ValidArticle).id
 		assert_response :success
 		assert_template :edit
+	end
+
+	test "update loads the correct article" do
+		@expectedArticle = articles(:ValidArticle)
+		get :edit, id: @expectedArticle.id
+		assert_equal @expectedArticle, assigns(:article)
+	end
+
+	test "update redirects to the article if the updates are valid" do
+		@expectedArticle = articles(:ValidArticle)
+		post :update, id: @expectedArticle.id, article: {title: 'New Title', body: 'New Body'}
+		assert_redirected_to @expectedArticle
+	end
+
+	test "update redirects to the update if the updates are invalid" do
+		@expectedArticle = articles(:ValidArticle)
+		post :update, id: @expectedArticle.id, article: {title: '', body: ''}
+		assert_template :edit
+	end
+
+	test "destroy removes the article" do
+		@articleId = articles(:ValidArticle)
+		get :destroy, id: @articleId
+		assert_not Article.exists?(@articleId)		
+	end
+
+	test "destroy redirects to articles page" do
+		@articleId = articles(:ValidArticle)
+		get :destroy, id: @articleId
+		assert_redirected_to articles_path	
 	end
 
 end
