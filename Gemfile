@@ -41,5 +41,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'simplecov', :group => :test
 
 gem 'rake'
-
-gem 'sqlite3'
