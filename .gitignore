@@ -102,3 +102,6 @@ $RECYCLE.BIN/
 
 # Ignore the gemfile lock so it can be generated on target machine
 Gemfile.lock
+
+# Ignore the locally generated rdocs
+/doc

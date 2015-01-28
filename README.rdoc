@@ -1,13 +1,12 @@
 == README
 
-Build Status (Travis CI)
+Build Status (Travis CI)	
 {<img src="https://travis-ci.org/lopezn/ProcessProject.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/lopezn/ProcessProject]
 
-Code Quality (Code Climate)
+Code Quality (Code Climate)	
 {<img src="https://codeclimate.com/github/lopezn/ProcessProject/badges/gpa.svg" />}[https://codeclimate.com/github/lopezn/ProcessProject]
 
-Test Coverage (Code Climate)
+Test Coverage (Code Climate)	
 {<img src="https://codeclimate.com/github/lopezn/ProcessProject/badges/coverage.svg" />}[https://codeclimate.com/github/lopezn/ProcessProject]
 
-This projects adds functionality to the project created by guides.rubyonrails.org/getting_started.html
-<tt>rake doc:app</tt>.
+This projects adds functionality to the project created by RailsGuides[http://guides.rubyonrails.org/getting_started.html]
