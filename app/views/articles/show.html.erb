@@ -1,12 +1,12 @@
 <p>
-	<strong>Title:</strong>
-	<%= @article.title %>
+	<strong style="font-size: 30pt"><%= @article.title %></strong>
 </p>
 
 <p>
-	<strong>Text:</strong>
-	<%= @article.text %>
+	<%= h(@article.text) %>
 </p>
+
+<%= link_to 'Download', download_article_path %>
 
 <h2>Comments</h2>
 <%= render @article.comments %>
@@ -16,8 +16,7 @@
 
 <%= link_to 'Back', articles_path %> | <%= link_to 'Edit', edit_article_path(@article) %>
 
-<!--<%= link_to 'Download', download_article_path %>
-
+<!--
 <%= form_for @article, url: upload_article_path do |f| %>
   <%= f.file_field :stuff %>
   <%= f.submit %>
