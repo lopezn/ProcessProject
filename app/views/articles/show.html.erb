@@ -6,7 +6,7 @@
 	<%= h(@article.text) %>
 </p>
 
-<%= link_to 'Download', download_article_path %>
+<%= link_to 'Download', download_article_path, id: "Download" %>
 
 <h2>Comments</h2>
 <%= render @article.comments %>
