@@ -4,3 +4,8 @@ rvm:
 addons:
   code_climate:
     repo_token: 194329e9b5e2bcb7e415813470f9e356e044497007a252520574e9ad69610085
+
+before_script:
+  - rails server
+
+script: phantomjs 
