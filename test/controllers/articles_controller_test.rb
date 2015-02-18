@@ -99,5 +99,53 @@ class ArticlesControllerTest < ActionController::TestCase
 		get :destroy, id: @articleId
 		assert_redirected_to articles_path	
 	end
+	
+	test "upvote increments an article's votes" do 
+		@article_before = articles(:ValidArticle)
+		get :upvote, id: @article_before.id
+		@article_after = Article.find(@article_before.id)
+		assert_equal @article_after.votes, @article_before.votes + 1
+	end
+	
+	test "upvote redirects to showing the article" do
+		@article = articles(:ValidArticle)
+		get :upvote, id: @article.id
+		assert_redirected_to @article
+	end
+	
+	test "downvote decrements an article's votes" do 
+		@article_before = articles(:ValidArticle)
+		get :downvote, id: @article_before.id
+		@article_after = Article.find(@article_before.id)
+		assert_equal @article_after.votes, @article_before.votes - 1
+	end
+	
+	test "downvote redirects to showing the article" do
+		@article = articles(:ValidArticle)
+		get :downvote, id: @article.id
+		assert_redirected_to @article
+	end
+	
+	test "show article places the votes" do
+		@article = articles(:ValidArticle)
+		get :show, id: @article.id
+		assert_select "span", "#{@article.votes}"
+	end
+	
+	test "show article has an downvote link" do
+		@article = articles(:ValidArticle)
+		get :show, id: @article.id
+		assert_select "a", "Dislike v" do |like|
+			assert like.to_s.include? downvote_article_path(@article)
+		end
+	end
+	
+	test "show article has an upvote link" do
+		@article = articles(:ValidArticle)
+		get :show, id: @article.id
+		assert_select "a", "^ Like" do |like|
+			assert like.to_s.include? upvote_article_path(@article)
+		end
+	end
 
 end

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     member do
       get 'download'
       patch 'upload'
+	  get 'upvote'
+	  get 'downvote'	  
     end
     resources :comments
   end  

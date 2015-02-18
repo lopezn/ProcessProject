@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20141211213347) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "text"
+    t.integer  "votes",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

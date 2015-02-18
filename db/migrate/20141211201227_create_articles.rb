@@ -3,6 +3,7 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title
       t.text :text
+	  t.integer :votes, :default => 0
 
       t.timestamps
     end

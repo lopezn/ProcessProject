@@ -8,6 +8,8 @@
 	<%= @article.text %>
 </p>
 
+<%= link_to '^ Like', upvote_article_path(@article) %> | <span><%= @article.votes %></span> | <%= link_to 'Dislike v', downvote_article_path(@article) %>
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 
