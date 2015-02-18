@@ -159,12 +159,6 @@ class ArticlesControllerTest < ActionController::TestCase
 		assert_not_nil assigns(:pdf)
 	end
 
-	test "download sends the pdf data" do
-		article = articles(:ValidArticle)
-		get :download, id: article.id
-		assert sending_file?
-	end
-
 	test "show view has download link" do
 		article = articles(:ValidArticle)
 		get :show, id: article.id
