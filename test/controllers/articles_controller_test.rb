@@ -116,4 +116,12 @@ class ArticlesControllerTest < ActionController::TestCase
 		get :download, id: article.id
 		assert sending_file?
 	end
+
+	test "show view has download link" do
+		article = articles(:ValidArticle)
+		get :show, id: article.id
+		assert_select 'a', 'Download' do |link|
+			assert link[0].to_s.include? "/articles/#{article.id}/download"
+		end
+	end	
 end
