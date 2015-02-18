@@ -46,5 +46,3 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 
 # Pdf 
 gem 'prawn', '~> 1.3.0'
-
-gem 'qunit-rails'
