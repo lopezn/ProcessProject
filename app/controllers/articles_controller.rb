@@ -1,3 +1,5 @@
+require 'prawn'
+
 class ArticlesController < ApplicationController
 
 	def new
@@ -43,9 +45,16 @@ class ArticlesController < ApplicationController
 		redirect_to articles_path
 	end
 
-	#def download
-	#	send_file Rails.root.join('app', 'assets', 'images', 'Penguins.jpg')
-	#end
+	def download
+		@article = Article.find(params[:id])
+
+		@pdf = Prawn::Document.new
+		@pdf.text @article.title, :size => 30
+		@pdf.move_down 15
+		@pdf.text @article.text
+
+		send_data @pdf.render, :filename => "#{@article.title}.pdf", :type => "application/pdf"
+	end
 
 	#def upload
 	#	@article = Article.find(params[:id])
@@ -58,6 +67,6 @@ class ArticlesController < ApplicationController
 
 	private
 		def article_params
-		    params.require(:article).permit(:title, :text)
+		  	params.require(:article).permit(:title, :text)
 		end
 end

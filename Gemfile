@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -38,6 +38,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
+# Explicitly install rake gem for TravisCI
 gem 'rake'
 
+# Code coverage by CodeClimate
 gem "codeclimate-test-reporter", group: :test, require: nil
+
+# Pdf 
+gem 'prawn', '~> 1.3.0'
