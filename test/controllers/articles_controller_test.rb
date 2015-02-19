@@ -99,6 +99,25 @@ class ArticlesControllerTest < ActionController::TestCase
 		get :destroy, id: articleId
 		assert_redirected_to articles_path	
 	end
+
+	test "download retrieves an article" do
+		expectedArticle = articles(:ValidArticle)
+		get :download, id: expectedArticle.id
+		assert_equal expectedArticle, assigns(:article)
+	end
+
+	test "download creates a pdf" do
+		get :download, id: articles(:ValidArticle).id
+		assert_not_nil assigns(:pdf)
+	end
+
+	test "show view has download link" do
+		article = articles(:ValidArticle)
+		get :show, id: article.id
+		assert_select 'a', 'Download' do |link|
+			assert link[0].to_s.include? "/articles/#{article.id}/download"
+		end
+	end
 	
 	test "upvote increments an article's votes" do 
 		@article_before = articles(:ValidArticle)
@@ -148,22 +167,4 @@ class ArticlesControllerTest < ActionController::TestCase
 		end
 	end
 
-	test "download retrieves an article" do
-		expectedArticle = articles(:ValidArticle)
-		get :download, id: expectedArticle.id
-		assert_equal expectedArticle, assigns(:article)
-	end
-
-	test "download creates a pdf" do
-		get :download, id: articles(:ValidArticle).id
-		assert_not_nil assigns(:pdf)
-	end
-
-	test "show view has download link" do
-		article = articles(:ValidArticle)
-		get :show, id: article.id
-		assert_select 'a', 'Download' do |link|
-			assert link[0].to_s.include? "/articles/#{article.id}/download"
-		end
-	end	
 end

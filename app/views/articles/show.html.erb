@@ -1,9 +1,11 @@
 <p>
-	<strong style="font-size: 30pt"><%= @article.title %></strong>
+	<strong>Title:</strong>
+	<%= @article.title %>
 </p>
 
 <p>
-	<%= h(@article.text) %>
+	<strong>Text:</strong>
+	<%= @article.text %>
 </p>
 
 <%= link_to '^ Like', upvote_article_path(@article) %> | <span><%= @article.votes %></span> | <%= link_to 'Dislike v', downvote_article_path(@article) %>
@@ -17,7 +19,8 @@
 
 <%= link_to 'Back', articles_path %> | <%= link_to 'Edit', edit_article_path(@article) %>
 
-<!--
+<!--<%= link_to 'Download', download_article_path %>
+
 <%= form_for @article, url: upload_article_path do |f| %>
   <%= f.file_field :stuff %>
   <%= f.submit %>
