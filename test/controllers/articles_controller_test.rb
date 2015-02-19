@@ -47,9 +47,9 @@ class ArticlesControllerTest < ActionController::TestCase
 	end
 
 	test "show loads the correct article" do
-		@expectedArticle = articles(:ValidArticle)
-		get :show, id: @expectedArticle.id
-		assert_equal @expectedArticle, assigns(:article)
+		expectedArticle = articles(:ValidArticle)
+		get :show, id: expectedArticle.id
+		assert_equal expectedArticle, assigns(:article)
 	end
 
 	test "show succeeds" do
@@ -59,9 +59,9 @@ class ArticlesControllerTest < ActionController::TestCase
 	end
 
 	test "edit loads the correct article" do
-		@expectedArticle = articles(:ValidArticle)
-		get :edit, id: @expectedArticle.id
-		assert_equal @expectedArticle, assigns(:article)
+		expectedArticle = articles(:ValidArticle)
+		get :edit, id: expectedArticle.id
+		assert_equal expectedArticle, assigns(:article)
 	end
 
 	test "edit succeeds" do
@@ -71,33 +71,52 @@ class ArticlesControllerTest < ActionController::TestCase
 	end
 
 	test "update loads the correct article" do
-		@expectedArticle = articles(:ValidArticle)
-		get :edit, id: @expectedArticle.id
-		assert_equal @expectedArticle, assigns(:article)
+		expectedArticle = articles(:ValidArticle)
+		get :edit, id: expectedArticle.id
+		assert_equal expectedArticle, assigns(:article)
 	end
 
 	test "update redirects to the article if the updates are valid" do
-		@expectedArticle = articles(:ValidArticle)
-		post :update, id: @expectedArticle.id, article: {title: 'New Title', body: 'New Body'}
-		assert_redirected_to @expectedArticle
+		expectedArticle = articles(:ValidArticle)
+		post :update, id: expectedArticle.id, article: {title: 'New Title', body: 'New Body'}
+		assert_redirected_to expectedArticle
 	end
 
 	test "update redirects to the update if the updates are invalid" do
-		@expectedArticle = articles(:ValidArticle)
-		post :update, id: @expectedArticle.id, article: {title: '', body: ''}
+		expectedArticle = articles(:ValidArticle)
+		post :update, id: expectedArticle.id, article: {title: '', body: ''}
 		assert_template :edit
 	end
 
 	test "destroy removes the article" do
-		@articleId = articles(:ValidArticle)
-		get :destroy, id: @articleId
-		assert_not Article.exists?(@articleId)		
+		articleId = articles(:ValidArticle)
+		get :destroy, id: articleId
+		assert_not Article.exists?(articleId)		
 	end
 
 	test "destroy redirects to articles page" do
-		@articleId = articles(:ValidArticle)
-		get :destroy, id: @articleId
+		articleId = articles(:ValidArticle)
+		get :destroy, id: articleId
 		assert_redirected_to articles_path	
+	end
+
+	test "download retrieves an article" do
+		expectedArticle = articles(:ValidArticle)
+		get :download, id: expectedArticle.id
+		assert_equal expectedArticle, assigns(:article)
+	end
+
+	test "download creates a pdf" do
+		get :download, id: articles(:ValidArticle).id
+		assert_not_nil assigns(:pdf)
+	end
+
+	test "show view has download link" do
+		article = articles(:ValidArticle)
+		get :show, id: article.id
+		assert_select 'a', 'Download' do |link|
+			assert link[0].to_s.include? "/articles/#{article.id}/download"
+		end
 	end
 	
 	test "upvote increments an article's votes" do 
