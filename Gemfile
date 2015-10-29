@@ -44,5 +44,5 @@ gem 'rake'
 # Code coverage by CodeClimate
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-# Pdf 
+# Pdf https://github.com/prawnpdf/prawn
 gem 'prawn', '~> 1.3.0'

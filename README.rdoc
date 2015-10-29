@@ -14,3 +14,5 @@ Test Coverage (Code Climate)
 This projects adds functionality to the project created by RailsGuides[http://guides.rubyonrails.org/getting_started.html]
 
 This project was created for a class at msoe where we learned process tools and practices.
+
+Pdf generation from the prawn gem https://github.com/prawnpdf/prawn
