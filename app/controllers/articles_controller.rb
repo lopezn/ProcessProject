@@ -3,6 +3,7 @@ require 'prawn'
 class ArticlesController < ApplicationController
 
 	def new
+		# The new article to be created
 		@article = Article.new
 	end
 
