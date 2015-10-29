@@ -12,3 +12,5 @@ Test Coverage (Code Climate)
 {<img src="https://codeclimate.com/github/lopezn/ProcessProject/badges/coverage.svg" />}[https://codeclimate.com/github/lopezn/ProcessProject]
 
 This projects adds functionality to the project created by RailsGuides[http://guides.rubyonrails.org/getting_started.html]
+
+This project was created for a class at msoe where we learned process tools and practices.
