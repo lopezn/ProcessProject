@@ -1,7 +1,12 @@
 class CommentsController < ApplicationController
 	def create
+		# The article to add a comment to
 		@article = Article.find(params[:article_id])
+		
+		# The comment to create
 		@comment = @article.comments.create(comment_params)
+		
+		# Redirect back to article:show
 		redirect_to article_path(@article)
 	end
 
